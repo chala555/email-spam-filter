@@ -1,4 +1,10 @@
+#main work
 joblib==1.5.3
 nltk==3.9.4
-streamlit==1.59.2
 scikit-learn==1.9.0
+#frontend UI
+streamlit==1.59.2
+requests==2.34.2
+#api
+fastapi==0.139.0
+uvicorn==0.51.0

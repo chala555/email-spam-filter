@@ -1,5 +1,5 @@
 import streamlit as st
-from src.predict import predict_message
+import requests
 st.title('Spam Email Classifier')
 st.write('Please write a message below to check if it looks like spam.')
 
@@ -9,8 +9,9 @@ if st.button('Check'):
     if user_input.strip() == '':
         st.warning('Please enter a message first.')
     else:
-        result = predict_message(user_input)
-        if result == 'Spam':
-            st.error(f'Prediction: {result}')
+        result = requests.post('http://localhost:8000/predict', json={'text': user_input})
+        prediction = result.json()["prediction"]  
+        if prediction == 'Spam':
+            st.error(f'Prediction: {prediction}')
         else:
-            st.success(f'Prediction: {result}')
+            st.success(f'Prediction: {prediction}')
