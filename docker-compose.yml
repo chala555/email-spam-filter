@@ -1,0 +1,17 @@
+services:
+  # The Backend API
+  spam-filter-api:
+    build: . 
+    container_name: spam-filter-api-container
+    ports:
+      - "8000:8000"
+    volumes:
+      - /home/stayn/Projects/Spam_Filter/notebooks:/home/stayn/Projects/Spam_Filter/notebooks
+  # The Streamlit Frontend
+  spam-filter-frontend:
+    build: ./frontend 
+    container_name: spam-filter-frontend-container
+    ports:
+      - "8501:8501"
+    depends_on:
+      - spam-filter-api

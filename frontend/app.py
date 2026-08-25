@@ -9,7 +9,7 @@ if st.button('Check'):
     if user_input.strip() == '':
         st.warning('Please enter a message first.')
     else:
-        result = requests.post('http://localhost:8000/predict', json={'text': user_input})
+        result = requests.post('http://spam-filter-api-container:8000/predict', json={'text': user_input})
         prediction = result.json()["prediction"]  
         if prediction == 'Spam':
             st.error(f'Prediction: {prediction}')
